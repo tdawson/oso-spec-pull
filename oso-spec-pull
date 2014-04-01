@@ -21,6 +21,12 @@ OOOGITDIR="$HOME/git/origin-server"
 OOOSOURCE="http://mirror.openshift.com/pub/origin-server/source/"
 
 #********************************************************
+# Make sure the git repo is up to date
+#********************************************************
+cd $OOOGITDIR
+git pull
+
+#********************************************************
 # Run through the list, once package at a time
 #********************************************************
 cat $OOOPACKAGELIST | while read line
@@ -36,7 +42,12 @@ do
 
     # Then get our source
     cd $SOURCEDIR
-    
+    # If a rubygem, grab the gem
+    if [[ $PNAME == rubygem* ]] ; then
+        wget $OOOSOURCE/$PNAME/$PNAME-$PVERSION.gem
+    else
+        wget $OOOSOURCE/$PNAME/$PNAME-$PVERSION.tar.gz
+    fi
 
 done
 
