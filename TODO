@@ -1,0 +1,4 @@
+- Find an easy way to populate the package.list
+- Find a way to get rid of the package.list totally.
+-- Possibly by pointing yum at the stable repo and do some magic.
+

@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# This script is a way for me to easily get the spec files,
+#   tarballs, and gems, for the latest OpenShift Origin
+#   stable release
+#
+#
+#********************************************************
+# VARIABLES
+#********************************************************
+# Change DEBUG to 0 to turn on
+DEBUG=1
+HERE=`pwd`
+RPMBUILDDIR="$HOME/rpmbuild"
+SPECDIR="$RPMBUILDDIR/SPECS"
+SOURCEDIR="$RPMBUILDDIR/SOURCES"
+OOOPACKAGELIST="$HERE/package.list"
+OOOGITDIR="$HOME/git/origin-server"
+OOOSOURCE="http://mirror.openshift.com/pub/origin-server/source/"
+
+
