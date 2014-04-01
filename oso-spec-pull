@@ -2,8 +2,10 @@
 #
 # This script is a way for me to easily get the spec files,
 #   tarballs, and gems, for the latest OpenShift Origin
-#   stable release
+#   stable release.
 #
+# I do this so that I can update the packages in Fedora,
+#   but there might be other reasons people want this.
 #
 #********************************************************
 # VARIABLES
@@ -18,4 +20,26 @@ OOOPACKAGELIST="$HERE/package.list"
 OOOGITDIR="$HOME/git/origin-server"
 OOOSOURCE="http://mirror.openshift.com/pub/origin-server/source/"
 
+#********************************************************
+# Run through the list, once package at a time
+#********************************************************
+cat $OOOPACKAGELIST | while read line
+do
+    # Get our package name and version
+    PNAME=`echo $line | awk '{print $1}'`
+    PVERSION=`echo $line | awk '{print $2}'`
+
+    # Get our spec file first
+    cd $OOOGITDIR
+    git checkout $PNAME-$PVERSION-1
+    find . -name $PNAME.spec -exec cp -v '{}' $SPECDIR/$PNAME-$PVERSION.spec \;
+
+    # Then get our source
+    cd $SOURCEDIR
+    
+
+done
+
+echo "$0 Finished Successfully"
+exit 0
 

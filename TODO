@@ -1,4 +1,6 @@
 - Find an easy way to populate the package.list
 - Find a way to get rid of the package.list totally.
 -- Possibly by pointing yum at the stable repo and do some magic.
+-- Once you have all the source rpms you can do a 
 
+   ls -1 *.src.rpm | while read line; do rpm -qp --qf "%{name} %{version}\n" $line; done
